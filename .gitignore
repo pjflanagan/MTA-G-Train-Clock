@@ -1,0 +1,6 @@
+config.py
+.vscode
+credentials.h
+.DS_Store
+*.pb.c
+*.pb.h
