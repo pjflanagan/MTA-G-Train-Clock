@@ -1,6 +1,6 @@
 config.py
 .vscode
-credentials.h
+credentials.*
 .DS_Store
 *.pb.c
 *.pb.h

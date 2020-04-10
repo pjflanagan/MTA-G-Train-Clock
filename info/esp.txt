@@ -16,6 +16,3 @@ Tools-->Port--> (whatever it is)
 8. Go to FILE> EXAMPLES> ESP8266> BLINK, it will start blinking.
 
 Note: Please contact us if you need the driver or meet any issue when using. We provide 100% satisfication service for customers.
-
-Package included:
-2* ESP8266 NodeMCU CP2102 WiFi Wireless Development Board

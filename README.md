@@ -1,16 +1,19 @@
 
+# MTA
 
-// TODO: organize this
+This project uses the MTA GTFS Feed to get the times of upcoming trains for my stop. Using an Arduino compatible ESP this project is capable of representing the time of upcoming trains in each direction using a stepper motor.
 
-http://datamine.mta.info/mta_esi.php
+## Data
+- http://api.mta.info
 
-
-https://lastminuteengineers.com/esp8266-nodemcu-arduino-tutorial/
-
-https://tttapa.github.io/ESP8266/Chap01%20-%20ESP8266.html
-
-Requirements:
+## Requirements
 - https://github.com/nanopb/nanopb
 
-Help:
+## Help
 - https://www.dfrobot.com/blog-1177.html
+- https://tttapa.github.io/ESP8266/Chap01%20-%20ESP8266.html
+- https://lastminuteengineers.com/esp8266-nodemcu-arduino-tutorial/
+- EXAMPLES: https://developers.google.com/transit/gtfs-realtime/examples/python-sample
+- DATA FORMAT: https://developers.google.com/transit/gtfs-realtime/reference
+- MTA SPECIFIC: http://datamine.mta.info/sites/all/files/pdfs/GTFS-Realtime-NYC-Subway%20version%201%20dated%207%20Sep.pdf
+- CPP GRPC: https://developers.google.com/protocol-buffers/docs/cpptutorial
