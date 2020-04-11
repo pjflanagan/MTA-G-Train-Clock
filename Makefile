@@ -8,3 +8,6 @@ esp:
 # protoc --proto_path=src/proto --nanopb_out=src/mta src/proto/*.proto
 gen-proto:
 	python generator/nanopb_generator.py src/mta/gtfs-realtime.proto
+
+example:
+	python ./examples/mta_python/main.py

@@ -2,7 +2,7 @@
 from google.transit import gtfs_realtime_pb2
 import urllib2
 from credentials import API_URL, API_KEY, STOP
-from arrivalClock import ArrivalClock
+from arrival_clock import ArrivalClock
 
 
 def load_feed():

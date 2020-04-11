@@ -1,7 +1,32 @@
 from datetime import datetime, timedelta
 from credentials import STOP
-from const import STOP_MAP, TRAIN_SPEED
 from stops import makeNorthBoundStops, makeSouthBoundStops
+
+STOP_MAP = {
+    "G22": "Court Square",
+    "G24": "21st",
+    "G26": "Greenpoint",
+    "G28": "Nassau",
+    "G29": "Metropolitan",
+    "G30": "Broadway",
+    "G31": "Flushing",
+    "G32": "Myrtle",
+    "G33": "Bedford/Nostrand",
+    "G34": "Classon",
+    "G35": "Clinton",
+    "G36": "Fulton",
+    "A42": "Hoyt-Schermerhorn",
+    "F20": "Bergen",
+    "F21": "Carroll",
+    "F22": "Smith",
+    "F23": "4th Ave",
+    "F24": "7th Ave",
+    "F25": "15th St",
+    "F26": "Fort Hamilton",
+    "F27": "Church"
+}
+
+TRAIN_SPEED = .6  # miles per minute ..._STOP_DISTANCE / TRAIN_SPEED = TIME
 
 
 class ArrivalClock:
@@ -83,3 +108,6 @@ class ArrivalClock:
         elif train['direction'] == 'S':
             direction = 'Brooklyn Bound G'
         print(direction + ' @ ' + stop_name + ' in ' + str(wait_time))
+
+        # def load(): loads new data into the clock
+        # def move(): moves the trains as time goes on
