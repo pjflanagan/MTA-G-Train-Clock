@@ -4,3 +4,8 @@ credentials.*
 .DS_Store
 *.pb.c
 *.pb.h
+*.pyc
+*.zip
+__pycache__
+package
+node_modules

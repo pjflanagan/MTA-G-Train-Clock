@@ -1,6 +1,10 @@
+
+import MTA from './mta';
+import STOP from './credentials';
+
 exports.handler = async (event) => {
 
-	const clock = new ArrivalClock();
+	const mta = new MTA(STOP);
 
 
 
