@@ -1,12 +1,19 @@
 
-import MTA from './mta';
-import STOP from './credentials';
+const credentials = require('./credentials')
+const { MTA } = require('./mta/mta');
+
 
 exports.handler = async (event) => {
 
-	const mta = new MTA(STOP);
+	const mta = new MTA({
+		stop: credentials.STOP,
+		key: credentials.API_KEY,
+		url: credentials.API_URL
+	});
 
+	const { qbt, bbt } = await mta.getTimes();
 
+	console.log({ qbt, bbt });
 
 
 	const response = {

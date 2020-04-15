@@ -9,6 +9,8 @@
 	"author": "Peter Flanagan",
 	"license": "ISC",
 	"dependencies": {
-		"gtfs-realtime-bindings": "0.0.5"
+		"gtfs-realtime-bindings": "0.0.5",
+		"request": "^2.88.2",
+		"request-promise": "^4.2.5"
 	}
 }

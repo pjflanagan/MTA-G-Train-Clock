@@ -2,7 +2,7 @@
 # LOCAL
 
 test-local:
-	node index.js
+	node test.js
 
 # AWS
 
