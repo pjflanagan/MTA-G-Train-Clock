@@ -100,8 +100,6 @@ class MTA {
 	getExpectedWaitTimeForTrain(train) {
 		const stops = this.pickDirection(train);
 
-		console.log({ train });
-
 		// 1 minute per stop + sum of all times between this stop and 0
 		let minutes = 0.0
 		let i = stops.stops.indexOf(train['stop'])
@@ -111,11 +109,9 @@ class MTA {
 			i -= 1
 		}
 		const arrivalTime = new Date(train.departureTime * 1000).getTime() + (minutes * 60 * 1000);
-		console.log(arrivalTime);
 
 		// calculate wait time from arrival time
 		const waitTime = arrivalTime - Date.now();
-		console.log(waitTime);
 		if (waitTime < 0)
 			// train is in the station at nassau(TODO: should move on to next train?)
 			return 0;

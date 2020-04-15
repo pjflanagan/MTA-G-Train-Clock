@@ -33,36 +33,35 @@ void init_wifi()
 	Serial.println("\nConnection established.");
 }
 
-String send_request()
+String *send_request()
 {
 	String response;
+	WiFiClientSecure client; // use WiFiClientSecure class to create TLS connection
 
-	// use WiFiClientSecure class to create TLS connection
-	WiFiClientSecure client;
-
-	Serial.printf("Connecting to host %s using fingerprint %s\n", HOST, FINGERPRINT);
+	// host
+	Serial.printf("Connecting to host %s\n", HOST);
 	client.setFingerprint(FINGERPRINT);
 	if (!client.connect(HOST, HTTPS_PORT))
 	{
 		Serial.println("Connection failed.");
-		return response;
+		return &response;
 	}
 
+	// path
 	Serial.printf("Requesting url %s\n", PATH);
-
 	client.print(String("GET ") + PATH + " HTTP/1.1\r\n" +
 				 "Host: " + HOST + "\r\n" +
 				 "User-Agent: BuildFailureDetectorESP8266\r\n" +
-				 "x-api-key:" + KEY + "\r\n" +
 				 "Connection: close\r\n\r\n");
 
+	// response
 	Serial.println("Request sent.");
 	while (client.connected())
 	{
 		String line = client.readStringUntil('\n');
 		response = response + line + '\n';
 	}
-	return response;
+	return &response;
 }
 
 // ARDUINO
@@ -76,10 +75,8 @@ void loop()
 {
 	if (requested == false)
 	{
-		String response = send_request();
-		Serial.println(response.length());
-
-		// read_response(response);
+		String *response = send_request();
+		Serial.println(*response);
 		requested = true;
 	}
 

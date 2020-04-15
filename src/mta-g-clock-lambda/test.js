@@ -1,3 +1,10 @@
 
 const index = require('./index.js');
-console.log(index.handler());
+
+
+const test = async function () {
+	const response = await index.handler();
+	console.log(response);
+}
+
+test();

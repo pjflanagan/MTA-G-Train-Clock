@@ -13,12 +13,9 @@ exports.handler = async (event) => {
 
 	const { qbt, bbt } = await mta.getTimes();
 
-	console.log({ qbt, bbt });
-
-
 	const response = {
 		statusCode: 200,
-		body: JSON.stringify('Hello from Lambda!'),
+		body: JSON.stringify(`Q${qbt}:B${bbt}`),
 	};
 	return response;
 };
