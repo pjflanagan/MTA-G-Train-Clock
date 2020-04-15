@@ -15,7 +15,7 @@ exports.handler = async (event) => {
 
 	const response = {
 		statusCode: 200,
-		body: JSON.stringify(`Q${qbt}:B${bbt}`),
+		body: `#Q${qbt}B${bbt}`,
 	};
 	return response;
 };
