@@ -63,36 +63,34 @@ class MTA {
 	}
 
 	getClosestTrainsInEachDirection(feed) {
-		const closestNorthBound = 0;
-		const closestSouthBound = 0;
+		let closestNorthBound = 0;
+		let closestSouthBound = 0;
 
 		// for each entity
 		feed.entity.forEach(entity => {
 			// if this has a trip update
-			if (!!entity.TripUpdate && entity.TripUpdate.StopTime.length > 0) {
-				const TripUpdate = entity.TripUpdate
-				const lastLocation = TripUpdate.StopTimeUpdate[0]
+			if (!!entity.tripUpdate && entity.tripUpdate.stopTimeUpdate.length > 0) {
+				const tripUpdate = entity.tripUpdate
+				const lastLocation = tripUpdate.stopTimeUpdate[0]
 				const train = {
-					departureTime: new Date(lastLocation.departure.time),
-					stop: lastLocation.StopId
+					departureTime: lastLocation.departure.time.low,
+					stop: lastLocation.stopId
 				};
 				// calculate if this train is closer to me than the other closest
-				if (this.northBoundStops.includes(train.stop)) {
+				if (this.northBound.stops.includes(train.stop)) {
 					train.direction = 'N';
 					if (closestNorthBound == 0 || this.isTrainCloser(train, closestNorthBound)) {
-						closestNorthBound = train
+						closestNorthBound = train;
 					}
 				}
-				else if (this.southBoundStops.includes(train.stop)) {
+				else if (this.southBound.stops.includes(train.stop)) {
 					train.direction = 'S';
 					if (closestSouthBound == 0 || this.isTrainCloser(train, closestSouthBound)) {
-						closestSouthBound = train
+						closestSouthBound = train;
 					}
 				}
 			};
 		});
-
-		console.log({ closestNorthBound, closestSouthBound });
 
 		// return the trains
 		return { closestNorthBound, closestSouthBound };
@@ -112,14 +110,16 @@ class MTA {
 			minutes += stops.distances[i] / TRAIN_SPEED
 			i -= 1
 		}
-		const arrivalTime = train.departureTime + new Date(0, 0, 0, 0, minutes, 0, 0).getTime();
+		const arrivalTime = new Date(train.departureTime * 1000).getTime() + (minutes * 60 * 1000);
+		console.log(arrivalTime);
 
 		// calculate wait time from arrival time
 		const waitTime = arrivalTime - Date.now();
+		console.log(waitTime);
 		if (waitTime < 0)
 			// train is in the station at nassau(TODO: should move on to next train?)
 			return 0;
-		return waitTime;
+		return waitTime / 60 / 1000;
 	}
 
 
