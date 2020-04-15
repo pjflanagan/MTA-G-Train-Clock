@@ -9,3 +9,4 @@ credentials.*
 __pycache__
 package
 node_modules
+response.json

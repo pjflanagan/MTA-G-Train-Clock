@@ -3,18 +3,8 @@
 
 This project uses the MTA GTFS Feed to get the times of upcoming trains for my stop. Using an Arduino compatible ESP this project is capable of representing the time of upcoming trains in each direction using a stepper motor.
 
-## Setup
-
-```
-pip install --target ./src/lambda/package googleapis-common-protos
-```
-
 ## To Do
 - [ ] just use a lambda function instead of protocl buffer
-  - [x] install aws on here
-  - [ ] move to a NODE app because extensions are easier to manage that way
-  - [ ] add packages locally
-  - [ ] makefile to zip packages and then update lambda
 - [ ] represent time with a stepper
 - [ ] loop process 
 - [ ] add a zero function for the stepper on startup
@@ -25,9 +15,6 @@ No longer doing the buffer way
 
 ## Data
 - http://api.mta.info
-
-## Requirements
-- https://github.com/nanopb/nanopb
 
 ## Help
 
