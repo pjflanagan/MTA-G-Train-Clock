@@ -3,6 +3,9 @@
 
 This project uses the MTA GTFS Feed to get the times of upcoming trains for my stop. Using an Arduino compatible ESP this project is capable of representing the time of upcoming trains in each direction using a stepper motor.
 
+## Board
+Wemos D1 R1
+
 ## To Do
 - [x] just use a lambda function instead of protocl buffer
 - [ ] represent time with a stepper
