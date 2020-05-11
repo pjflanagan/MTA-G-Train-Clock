@@ -4,16 +4,20 @@
 This project uses the MTA GTFS Feed to get the times of upcoming trains for my stop. Using an Arduino compatible ESP this project is capable of representing the time of upcoming trains in each direction using a stepper motor.
 
 ## Board
-Wemos D1 R1
 
-## To Do
-- [x] just use a lambda function instead of protocl buffer
-- [ ] represent time with a stepper
-- [ ] loop process and limit requests be calculating deltas
-- [ ] add a zero function for the stepper on startup (requires me to push a button or to add bumper clickers)
+Wemos D1 R1 with ESP8266 WiFi. How to setup IDE
 
-## Data
-- http://api.mta.info
+1.  Go to File > Preferences and copy the URL below to get the ESP board manager extensions
+	- http://arduino.esp8266.com/stable/package_esp8266com_index.json (must use http://)
+2. Go to Tools > Board > Board Manager > Type "esp8266" and download the Community esp8266 and install
+3. Set up the board
+	- Tools > Board > Wemos D1 R1
+	- Tools > Flash Size > 4M (3M SPIFFS)
+	- Tools > CPU Frequency > 80 Mhz
+	- Tools > Upload Speed > 921600
+	- Tools > Port > (select board port, if not found see step 4)
+4. Install esptool.py, running this will find the board on the command line
+	- https://pypi.org/project/esptool/
 
 ## Help
 
@@ -32,6 +36,7 @@ Wemos D1 R1
 - https://developers.google.com/transit/gtfs-realtime/examples/python-sample
 
 ### MTA
+- http://api.mta.info
 - http://datamine.mta.info/sites/all/files/pdfs/GTFS-Realtime-NYC-Subway%20version%201%20dated%207%20Sep.pdf
 
 ### GRPC / NanoPB
@@ -44,4 +49,3 @@ Wemos D1 R1
 ### Stepper
 - https://www.instructables.com/id/BYJ48-Stepper-Motor/
 - https://www.arduino.cc/en/Reference/StepperExample
-

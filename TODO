@@ -1,0 +1,5 @@
+- [x] just use a lambda function instead of protocl buffer
+- [ ] represent time on two steppers
+- [ ] every minute until less than 1, have the steppers move down a minute
+- [ ] when less than 1, send request again
+- [ ] add a zero button for the stepper (button for each stepper, push to activate, push again when it reaches 20)
