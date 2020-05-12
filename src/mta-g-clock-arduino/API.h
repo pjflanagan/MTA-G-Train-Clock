@@ -1,19 +1,16 @@
 
-#ifndef API_CPP
-#define API_CPP
+#ifndef API_H
+#define API_H
 
-#include <string.h>
+#include <Arduino.h>
 
 #include <WiFiClientSecure.h>
 #include <ESP8266WiFi.h>
 
 #include "credentials.h"
 
-// WIFI
-
 void init_wifi()
 {
-  Serial.begin(115200); // can be removed after debugging
   delay(10);
   Serial.println('\n');
 
@@ -85,5 +82,6 @@ float get_time_for_train(char train, String *response)
   String sub = response->substring(start + 1, end);
   return num;
 }
+
 
 #endif
