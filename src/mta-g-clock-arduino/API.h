@@ -71,12 +71,12 @@ float get_time_for_train(char train, String *response)
   {
     case 'Q':
       s = response->indexOf('Q');
-      Serial.println(s);
       e = response->indexOf('B');
-      Serial.println(e);
+      break;
     case 'B':
       s = response->indexOf('B');
       e = size_t(response->length());
+      break;
     default:
       return 0;
   }
