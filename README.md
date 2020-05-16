@@ -5,13 +5,13 @@ This project uses the MTA GTFS Feed to get the times of upcoming trains for my s
 
 ## Board
 
-Wemos D1 R1 with ESP8266 WiFi. How to setup IDE
+Wemos D1 R2 with ESP8266 WiFi. How to setup IDE:
 
 1.  Go to File > Preferences and copy the URL below to get the ESP board manager extensions
 	- http://arduino.esp8266.com/stable/package_esp8266com_index.json (must use http://)
 2. Go to Tools > Board > Board Manager > Type "esp8266" and download the Community esp8266 and install
 3. Set up the board
-	- Tools > Board > Wemos D1 R1
+	- Tools > Board > Wemos D1 RR
 	- Tools > Flash Size > 4M (3M SPIFFS)
 	- Tools > CPU Frequency > 80 Mhz
 	- Tools > Upload Speed > 921600

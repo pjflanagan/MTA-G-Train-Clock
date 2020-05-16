@@ -66,21 +66,22 @@ String send_request()
 // #Q5.322283333333334B6.73895
 float get_time_for_train(char train, String *response)
 {
-  float num;
-  size_t start, end;
+  size_t s, e;
   switch (train)
   {
     case 'Q':
-      start = response->indexOf('Q');
-      end = response->indexOf('B');
+      s = response->indexOf('Q');
+      Serial.println(s);
+      e = response->indexOf('B');
+      Serial.println(e);
     case 'B':
-      start = response->indexOf('B');
-      end = size_t(response->length());
+      s = response->indexOf('B');
+      e = size_t(response->length());
     default:
       return 0;
   }
-  String sub = response->substring(start + 1, end);
-  return num;
+  String sub = response->substring(s + 1, e);
+  return sub.toFloat();
 }
 
 

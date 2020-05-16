@@ -24,6 +24,8 @@ void loop()
   {
     // if it is past the next request time, make a request
     String response = send_request();
+    Serial.print("Response: ");
+    Serial.println(response);
     qb = get_time_for_train('Q', &response);
     bb = get_time_for_train('B', &response);
   }
@@ -59,7 +61,7 @@ void loop()
 
   // delay 30 seconds
   // TODO: this is wrong because moving takes time
-  delay(1000 * 30);
+  delay(1000 * 30 * 50);
 }
 
 #endif
