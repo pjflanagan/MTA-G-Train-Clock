@@ -7,6 +7,7 @@ Stepper qStepper = Stepper(D0, D1, D2, D3);
 void setup()
 {
   Serial.begin(115200);
+  Serial.println(" ==== START ==== ");
   bStepper.setDestinationMinutes(6.14);
 }
 

@@ -4,6 +4,12 @@
 
 #include "API.h"
 
+#include "Stepper.cpp"
+
+// declare our steppers here
+Stepper bStepper = Stepper(D5, D6, D7, D8);
+Stepper qStepper = Stepper(D0, D1, D2, D3);
+
 // when millis() is greater than this, it is time to make the next request
 int g_next_request_time = 0;
 
@@ -16,6 +22,9 @@ float qb, bb = 20;
 void setup()
 {
   Serial.begin(115200); // can be removed after debugging
+  Serial.println(" ===== Start MTA Clock ===== ");
+  bStepper.setDestinationMinutes(0);
+  qStepper.setDestinationMinutes(0);
   init_wifi();
 }
 
@@ -35,6 +44,9 @@ void loop()
     float request_delay = (qb < bb) ? qb : bb;
     request_delay = request_delay * 60 * 1000;
     g_next_request_time = millis() + int(request_delay) * 3 / 4;
+  
+    Serial.print("Next request time: ");
+    Serial.println(g_next_request_time);
   }
   else
   {
@@ -52,22 +64,20 @@ void loop()
   Serial.println(bb);
 
   // // set the motors
-  // qStepper.setDestinationMinutes(qb);
-  // bStepper.setDestinationMinutes(bb);
+   qStepper.setDestinationMinutes(qb);
+   bStepper.setDestinationMinutes(bb);
 
   g_last_move_time = millis();
   // // move the motors, this step takes time, so we will need to account for it when moving them the next time
-  // while (!qStepper.done() && !bStepper.done())
-  // {
-  // 	qStepper.move();
-  // 	bStepper.move();
-  // 	delay(2);
-  // }
+  while (!qStepper.done() && !bStepper.done())
+  {
+    qStepper.move();
+    bStepper.move();
+    delay(2);
+  }
+
+
   //  TODO: calculate how long it took to move and see how long we need to delay int time_to_move = millis() - last_move_time;
-
-  Serial.print("Next request time: ");
-  Serial.println(g_next_request_time);
-
   // delay 10 seconds
   delay(1000 * 10);
 }
