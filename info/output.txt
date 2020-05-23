@@ -1,0 +1,41 @@
+Executable segment sizes:
+IROM   : 232772          - code in flash         (default or ICACHE_FLASH_ATTR) 
+IRAM   : 27276   / 32768 - code in IRAM          (ICACHE_RAM_ATTR, ISRs...) 
+DATA   : 1252  )         - initialized variables (global, static) in RAM/HEAP 
+RODATA : 732   ) / 81920 - constants             (global, static) in RAM/HEAP 
+BSS    : 25008 )         - zeroed variables      (global, static) in RAM/HEAP 
+Sketch uses 262032 bytes (25%) of program storage space. Maximum is 1044464 bytes.
+Global variables use 26992 bytes (32%) of dynamic memory, leaving 54928 bytes for local variables. Maximum is 81920 bytes.
+esptool.py v2.8
+Serial port /dev/cu.usbserial-1410
+Connecting....
+Chip is ESP8266EX
+Features: WiFi
+Crystal is 26MHz
+MAC: a4:cf:12:dc:ed:ef
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Compressed 266192 bytes to 194325...
+
+Writing at 0x00000000... (8 %)
+Writing at 0x00004000... (16 %)
+Writing at 0x00008000... (25 %)
+Writing at 0x0000c000... (33 %)
+Writing at 0x00010000... (41 %)
+Writing at 0x00014000... (50 %)
+Writing at 0x00018000... (58 %)
+Writing at 0x0001c000... (66 %)
+Writing at 0x00020000... (75 %)
+Writing at 0x00024000... (83 %)
+Writing at 0x00028000... (91 %)
+Writing at 0x0002c000... (100 %)
+Wrote 266192 bytes (194325 compressed) at 0x00000000 in 4.8 seconds (effective 445.3 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

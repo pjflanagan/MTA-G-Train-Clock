@@ -5,6 +5,7 @@
 #include <Arduino.h>
 
 const int STEPS_PER_REV = 2048;
+const int ROTATIONS_PER_MINUTE_REPRESENTATION = 4;
 
 class Stepper
 {
@@ -24,16 +25,11 @@ public:
 	void setDestinationMinutes(float minutes)
 	{
 		// translate minutes to steps
-		this->_destination = int(minutes * STEPS_PER_REV);
+		this->_destination = int(minutes * STEPS_PER_REV * ROTATIONS_PER_MINUTE_REPRESENTATION);
 	}
 
 	void move()
 	{
-		Serial.print("MOVE ");
-		Serial.print(this->_current);
-		Serial.print(" -> ");
-		Serial.print(this->_destination);
-		Serial.println("");
 		// if delta is not 0, move one step
 		if (!this->done())
 		{

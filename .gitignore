@@ -10,3 +10,4 @@ __pycache__
 package
 node_modules
 response.json
+package-lock.json
