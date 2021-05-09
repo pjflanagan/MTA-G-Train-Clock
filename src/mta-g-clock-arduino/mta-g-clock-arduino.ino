@@ -21,65 +21,66 @@ float qb, bb = 20;
 
 void setup()
 {
-	Serial.begin(115200); // can be removed after debugging
-	Serial.println(" ===== Start MTA Clock ===== ");
-	bStepper.setDestinationMinutes(0);
-//	qStepper.setDestinationMinutes(0);
-	init_wifi();
+  Serial.begin(115200); // can be removed after debugging
+  delay(20);
+  Serial.println(" ===== Start MTA Clock ===== ");
+  bStepper.setDestinationMinutes(0);
+  //	qStepper.setDestinationMinutes(0);
+  init_wifi();
 }
 
 void loop()
 {
 
-	if (millis() > g_next_request_time)
-	{
-		// if it is past the next request time, make a request
-		String response = send_request();
-		Serial.print("Response: ");
-		Serial.println(response);
-		qb = get_time_for_train('Q', &response);
-		bb = get_time_for_train('B', &response);
+  if (millis() > g_next_request_time)
+  {
+    // if it is past the next request time, make a request
+    String response = send_request();
+    Serial.print("Response: ");
+    Serial.println(response);
+    qb = get_time_for_train('Q', &response);
+    bb = get_time_for_train('B', &response);
 
-		// set the next time to make a request to 3/4 of the shortest train time
-		float request_delay = (qb < bb) ? qb : bb;
-		request_delay = request_delay * 60 * 1000;
-		g_next_request_time = millis() + int(request_delay) * 3 / 4;
+    // set the next time to make a request to 3/4 of the shortest train time
+    float request_delay = (qb < bb) ? qb : bb;
+    request_delay = request_delay * 60 * 1000;
+    g_next_request_time = millis() + int(request_delay) * 3 / 4;
 
-		Serial.print("Next request time: ");
-		Serial.println(g_next_request_time);
-	}
-	else
-	{
-		// otherwise calculate the new wait time by subtracting how long it's been since the last request
-		float time_since_last_move_in_minutes = float((millis() - g_last_move_time)) / float(1000 * 60);
-		Serial.print("Time since last move: ");
-		Serial.println(time_since_last_move_in_minutes);
-		qb = (qb - time_since_last_move_in_minutes <= 0) ? 0 : qb - time_since_last_move_in_minutes;
-		bb = (bb - time_since_last_move_in_minutes <= 0) ? 0 : bb - time_since_last_move_in_minutes;
-	}
+    Serial.print("Next request time: ");
+    Serial.println(g_next_request_time);
+  }
+  else
+  {
+    // otherwise calculate the new wait time by subtracting how long it's been since the last request
+    float time_since_last_move_in_minutes = float((millis() - g_last_move_time)) / float(1000 * 60);
+    Serial.print("Time since last move: ");
+    Serial.println(time_since_last_move_in_minutes);
+    qb = (qb - time_since_last_move_in_minutes <= 0) ? 0 : qb - time_since_last_move_in_minutes;
+    bb = (bb - time_since_last_move_in_minutes <= 0) ? 0 : bb - time_since_last_move_in_minutes;
+  }
 
-	Serial.print("Queens: ");
-	Serial.println(qb);
-	Serial.print("Brooklyn: ");
-	Serial.println(bb);
+  Serial.print("Queens: ");
+  Serial.println(qb);
+  Serial.print("Brooklyn: ");
+  Serial.println(bb);
 
-	// // set the motors
-//	qStepper.setDestinationMinutes(qb);
-	bStepper.setDestinationMinutes(bb);
+  // // set the motors
+  //	qStepper.setDestinationMinutes(qb);
+  bStepper.setDestinationMinutes(bb);
 
-	g_last_move_time = millis();
-	// move the motors, this step takes time, so we will need to account for it when moving them the next time
-	while (!bStepper.done()) // !qStepper.done()
-	{
-//		qStepper.move();
-		bStepper.move();
-		delay(2);
-	}
+  g_last_move_time = millis();
+  // move the motors, this step takes time, so we will need to account for it when moving them the next time
+  while (!bStepper.done()) // !qStepper.done()
+  {
+    //		qStepper.move();
+    bStepper.move();
+    delay(2);
+  }
 
-	// calculate how long it took to move and change the delay time to ensure its only 20 seconds
-	int movement_time = millis() - g_last_move_time;
-	int delay_time = (1000 * 20) - movement_time;
-	delay(max(delay_time, 0));
+  // calculate how long it took to move and change the delay time to ensure its only 20 seconds
+  int movement_time = millis() - g_last_move_time;
+  int delay_time = (1000 * 20) - movement_time;
+  delay(max(delay_time, 0));
 }
 
 #endif

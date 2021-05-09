@@ -9,7 +9,7 @@ void setup()
 	Serial.begin(115200);
 	delay(20);
 	Serial.println(" ==== START ==== ");
-	bStepper.setDestinationMinutes(6.14);
+	bStepper.setDestinationMinutes(-6.14);
 }
 
 void loop()
